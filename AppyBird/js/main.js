@@ -36,20 +36,43 @@ buzz.all().setVolume(volume);
 var loopGameloop;
 var loopPipeloop;
 
-$(document).ready(function() {
-   if(window.location.search == "?debug")
-      debugmode = true;
-   if(window.location.search == "?easy")
-      pipeheight = 200;
+var app = {
+    // Application Constructor
+    initialize: function() {
+        this.bindEvents();
+    },
+    // Bind Event Listeners
+    //
+    // Bind any events that are required on startup. Common events are:
+    // 'load', 'deviceready', 'offline', and 'online'.
+    bindEvents: function() {
+        document.addEventListener('deviceready', this.onDeviceReady, false);
+    },
+    // deviceready Event Handler
+    //
+    // The scope of 'this' is the event. In order to call the 'receivedEvent'
+    // function, we must explicity call 'app.receivedEvent(...);'
+    onDeviceReady: function() {
+        //Check the device platform to determine which logo to show
+   		var player = $('#player');
+        if (device.platform === "iOS") {
+            player.addClass('apple');
+        } else {
+            player.addClass('droid');
+        }
+        
+        navigator.splashscreen.hide();
+        
+        //get the highscore
+   		var savedscore = getCookie("highscore");
+        if(savedscore != "") {
+      		highscore = parseInt(savedscore);
+        }
    
-   //get the highscore
-   var savedscore = getCookie("highscore");
-   if(savedscore != "")
-      highscore = parseInt(savedscore);
-   
-   //start with the splash screen
-   showSplash();
-});
+   		//start with the splash screen
+   		showSplash();
+    }
+};
 
 function getCookie(cname)
 {

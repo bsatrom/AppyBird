@@ -2,28 +2,12 @@
    0% { background-position: 0px 0px; }
    100% { background-position: -335px 0px; }
 }
-@-moz-keyframes animLand {
-   0% { background-position: 0px 0px; }
-   100% { background-position: -335px 0px; }
-}
-@-o-keyframes animLand {
-   0% { background-position: 0px 0px; }
-   100% { background-position: -335px 0px; }
-}
 @keyframes animLand {
    0% { background-position: 0px 0px; }
    100% { background-position: -335px 0px; }
 }
 
 @-webkit-keyframes animSky {
-   0% { background-position: 0px 100%; }
-   100% { background-position: -275px 100%; }
-}
-@-moz-keyframes animSky {
-   0% { background-position: 0px 100%; }
-   100% { background-position: -275px 100%; }
-}
-@-o-keyframes animSky {
    0% { background-position: 0px 100%; }
    100% { background-position: -275px 100%; }
 }
@@ -36,17 +20,20 @@
    from { background-position: 0px 0px; }
    to { background-position: 0px -96px; }
 }
-@-moz-keyframes animBird {
-   from { background-position: 0px 0px; }
-   to { background-position: 0px -96px; }
-}
-@-o-keyframes animBird {
-   from { background-position: 0px 0px; }
-   to { background-position: 0px -96px; }
-}
+
 @keyframes animBird {
    from { background-position: 0px 0px; }
    to { background-position: 0px -96px; }
+}
+
+@-webkit-keyframes animApple {
+   from { -webkit-transform: scale(0.8) rotate(-10deg) translateY(-20px); }
+   50% { -webkit-transform: scale(1) rotate(0deg) translateY(0px); }
+   to { -webkit-transform: scale(1.2) rotate(10deg) translateY(10px); }
+}
+@keyframes animApple {
+   from { -webkit-transform: rotate(0deg); }
+   to { -webkit-transform: rotate(359deg); }
 }
 
 @-webkit-keyframes animPipe {
@@ -300,6 +287,28 @@ Screen - Game
    
    -webkit-animation: animBird 300ms steps(4) infinite;
    animation: animBird 300ms steps(4) infinite;
+}
+
+.apple
+{
+   position: absolute;
+   width: 34px;
+   height: 42px;
+   background-image: url('../assets/apple-chrome.png');
+   
+   -webkit-animation: animApple 800ms steps(12) alternate infinite;
+   animation: animApple 800ms steps(12) alternate infinite;
+}
+
+.droid
+{
+   position: absolute;
+   width: 100px;
+   height: 75px;
+   background-image: url('../assets/android-transparent.png');
+   
+   -webkit-animation: animApple 800ms steps(12) alternate infinite;
+   animation: animApple 800ms steps(12) alternate infinite;
 }
 
 .pipe
