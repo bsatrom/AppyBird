@@ -294,8 +294,8 @@ Screen - Game
 {
    position: absolute;
    width: 34px;
-   height: 42px;
-   background-image: url('../assets/apple-chrome.png');
+   height: 40px;
+   background-image: url('../assets/apple_old.png');
    
    -webkit-animation: animApple 800ms steps(12) alternate infinite;
    animation: animApple 800ms steps(12) alternate infinite;
@@ -304,9 +304,9 @@ Screen - Game
 .droid
 {
    position: absolute;
-   width: 100px;
-   height: 75px;
-   background-image: url('../assets/android-transparent.png');
+   width: 34px;
+   height: 40px;
+   background-image: url('../assets/android.png');
    
    -webkit-animation: animApple 800ms steps(12) alternate infinite;
    animation: animApple 800ms steps(12) alternate infinite;
