@@ -312,6 +312,17 @@ Screen - Game
    animation: animApple 800ms steps(12) alternate infinite;
 }
 
+.windows
+{
+   position: absolute;
+   width: 34px;
+   height: 69px;
+   background-image: url('../assets/clippy.png');
+   
+   -webkit-animation: animApple 800ms steps(12) alternate infinite;
+   animation: animApple 800ms steps(12) alternate infinite;
+}
+
 .pipe
 {
    position: absolute;

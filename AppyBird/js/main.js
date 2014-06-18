@@ -57,8 +57,10 @@ var app = {
    		var player = $('#player');
         if (device.platform === "iOS") {
             player.addClass('apple');
-        } else {
+        } else if (device.platform == "Android") {
             player.addClass('droid');
+        } else {
+            player.addClass('windows');
         }
         
         navigator.splashscreen.hide();
