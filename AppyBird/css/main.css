@@ -144,8 +144,9 @@ Screen - Game
 
 #ceiling
 {
-   position: absolute;
-   top: -16px;
+   position: fixed;
+   top: 0;
+   left: 0;
    height: 16px;
    width: 100%;
    background-image: url('../assets/ceiling.png');
