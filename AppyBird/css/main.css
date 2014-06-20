@@ -338,8 +338,8 @@ Screen - Game
 
 .pipe_upper
 {
-   position: absolute;
-   top: 0;
+   position: fixed;
+   top: 16px;
    width: 52px;
    background-image: url('../assets/pipe.png');
    background-repeat: repeat-y;
