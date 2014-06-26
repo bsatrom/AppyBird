@@ -24,12 +24,7 @@ var pipes = new Array();
 var replayclickable = false;
 
 //sounds
-var volume = 30;
-var soundJump = new Media("assets/sounds/sfx_wing.ogg");
-var soundScore = new Media("assets/sounds/sfx_point.ogg");
-var soundHit = new Media("assets/sounds/sfx_hit.ogg");
-var soundDie = new Media("assets/sounds/sfx_die.ogg");
-var soundSwoosh = new Media("assets/sounds/sfx_swooshing.ogg");
+var soundJump, soundScore, soundHit, soundDie, soundSwoosh;
 
 //loops
 var loopGameloop;
@@ -69,11 +64,23 @@ var app = {
         if(savedscore != "") {
       		highscore = parseInt(savedscore);
         }
+        
+        if ('Media' in window) {
+            var soundJump = new Media("assets/sounds/sfx_wing.ogg", null, mediaError);
+            var soundScore = new Media("assets/sounds/sfx_point.ogg", null, mediaError);
+            var soundHit = new Media("assets/sounds/sfx_hit.ogg", null, mediaError);
+            var soundDie = new Media("assets/sounds/sfx_die.ogg", null, mediaError);
+            var soundSwoosh = new Media("assets/sounds/sfx_swooshing.ogg", null, mediaError);
+        }
    
    		//start with the splash screen
    		showSplash();
     }
 };
+
+function mediaError(err) {
+     console.log("Error getting media" + err);
+}
 
 function getCookie(cname)
 {
@@ -109,8 +116,10 @@ function showSplash()
    $("#player").css({ y: 0, x: 0});
    updatePlayer($("#player"));
    
-   soundSwoosh.stop();
-   soundSwoosh.play();
+   if ('Media' in window) {
+	 soundSwoosh.stop();
+     soundSwoosh.play({ numberofLoops: 1 });
+   }
    
    //clear out all the pipes if there are any
    $(".pipe").remove();
@@ -258,8 +267,10 @@ function playerJump()
 {
    velocity = jump;
    //play jump sound
-   soundJump.stop();
-   soundJump.play();
+   if ('Media' in window) {
+     soundJump.stop();
+       soundJump.play({ numberOfLoops: 1 });
+   }
 }
 
 function setBigScore(erase)
@@ -349,11 +360,11 @@ function playerDead()
    else
    {
       //play the hit sound (then the dead sound) and then show score
-      soundHit.play().bindOnce("ended", function() {
-         soundDie.play().bindOnce("ended", function() {
-            showScore();
-         });
-      });
+       if ('Media' in window) {
+         soundHit.play({ numberOfLoops: 1 });
+         soundDie.play({ numberOfLoops: 1 });
+         showScore();
+       }
    }
 }
 
@@ -380,16 +391,20 @@ function showScore()
    var wonmedal = setMedal();
    
    //SWOOSH!
-   soundSwoosh.stop();
-   soundSwoosh.play();
+   if ('Media' in window) {
+       soundSwoosh.stop();
+       soundSwoosh.play({ numberOfLoops: 1 });
+   }
    
    //show the scoreboard
    $("#scoreboard").css({ y: '40px', opacity: 0 }); //move it down so we can slide it up
    $("#replay").css({ y: '40px', opacity: 0 });
    $("#scoreboard").transition({ y: '0px', opacity: 1}, 600, 'ease', function() {
       //When the animation is done, animate in the replay button and SWOOSH!
-      soundSwoosh.stop();
-      soundSwoosh.play();
+      if ('Media' in window) {''
+       soundSwoosh.stop();
+       soundSwoosh.play({ numberOfLoops: 1 });
+      }
       $("#replay").transition({ y: '0px', opacity: 1}, 600, 'ease');
       
       //also animate in the MEDAL! WOO!
@@ -411,8 +426,10 @@ $("#replay").click(function() {
    else
       replayclickable = false;
    //SWOOSH!
-   soundSwoosh.stop();
-   soundSwoosh.play();
+   if ('Media' in window) {
+     soundSwoosh.stop();
+     soundSwoosh.play({ numberOfLoops: 1 });
+   }
    
    //fade out the scoreboard
    $("#scoreboard").transition({ y: '-40px', opacity: 0}, 1000, 'ease', function() {
@@ -428,9 +445,11 @@ function playerScore()
 {
    score += 1;
    //play score sound
-   soundScore.stop();
-   soundScore.play();
-   setBigScore();
+   if ('Media' in window) {
+     soundScore.stop();
+     soundScore.play({ numberOfLoops: 1 });
+   }
+    setBigScore();
 }
 
 function updatePipes()
