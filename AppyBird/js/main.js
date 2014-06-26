@@ -25,12 +25,11 @@ var replayclickable = false;
 
 //sounds
 var volume = 30;
-var soundJump = new buzz.sound("assets/sounds/sfx_wing.ogg");
-var soundScore = new buzz.sound("assets/sounds/sfx_point.ogg");
-var soundHit = new buzz.sound("assets/sounds/sfx_hit.ogg");
-var soundDie = new buzz.sound("assets/sounds/sfx_die.ogg");
-var soundSwoosh = new buzz.sound("assets/sounds/sfx_swooshing.ogg");
-buzz.all().setVolume(volume);
+var soundJump = new Media("assets/sounds/sfx_wing.ogg");
+var soundScore = new Media("assets/sounds/sfx_point.ogg");
+var soundHit = new Media("assets/sounds/sfx_hit.ogg");
+var soundDie = new Media("assets/sounds/sfx_die.ogg");
+var soundSwoosh = new Media("assets/sounds/sfx_swooshing.ogg");
 
 //loops
 var loopGameloop;
@@ -183,16 +182,6 @@ function gameloop() {
    var boxright = boxleft + boxwidth;
    var boxbottom = boxtop + boxheight;
    
-   //if we're in debug mode, draw the bounding box
-   if(debugmode)
-   {
-      var boundingbox = $("#playerbox");
-      boundingbox.css('left', boxleft);
-      boundingbox.css('top', boxtop);
-      boundingbox.css('height', boxheight);
-      boundingbox.css('width', boxwidth);
-   }
-   
    //did we hit the ground?
    if(box.bottom >= $("#land").offset().top)
    {
@@ -218,15 +207,6 @@ function gameloop() {
    var piperight = pipeleft + pipewidth;
    var pipebottom = pipetop + pipeheight;
    
-   if(debugmode)
-   {
-      var boundingbox = $("#pipebox");
-      boundingbox.css('left', pipeleft);
-      boundingbox.css('top', pipetop);
-      boundingbox.css('height', pipeheight);
-      boundingbox.css('width', pipewidth);
-   }
-   
    //have we gotten inside the pipe yet?
    if(boxright > pipeleft)
    {
@@ -234,7 +214,7 @@ function gameloop() {
       if(boxtop > pipetop && boxbottom < pipebottom)
       {
          //yeah! we're within bounds
-         
+         // play a sound here
       }
       else
       {
@@ -255,19 +235,6 @@ function gameloop() {
       playerScore();
    }
 }
-
-//Handle space bar
-$(document).keydown(function(e){
-   //space bar!
-   if(e.keyCode == 32)
-   {
-      //in ScoreScreen, hitting space should click the "replay" button. else it's just a regular spacebar hit
-      if(currentstate == states.ScoreScreen)
-         $("#replay").click();
-      else
-         screenClick();
-   }
-});
 
 //Handle mouse down OR touch start
 if("ontouchstart" in window)
