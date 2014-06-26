@@ -66,20 +66,24 @@ var app = {
         }
         
         if ('Media' in window) {
-            var soundJump = new Media("assets/sounds/sfx_wing.ogg", null, mediaError);
-            var soundScore = new Media("assets/sounds/sfx_point.ogg", null, mediaError);
-            var soundHit = new Media("assets/sounds/sfx_hit.ogg", null, mediaError);
-            var soundDie = new Media("assets/sounds/sfx_die.ogg", null, mediaError);
-            var soundSwoosh = new Media("assets/sounds/sfx_swooshing.ogg", null, mediaError);
+            soundJump = new Media("assets/sounds/sfx_wing.mp3", mediaSuccess, mediaError);
+            soundScore = new Media("assets/sounds/sfx_point.mp3", mediaSuccess, mediaError);
+            soundHit = new Media("assets/sounds/sfx_hit.mp3", mediaSuccess, mediaError);
+            soundDie = new Media("assets/sounds/sfx_die.mp3", mediaSuccess, mediaError);
+            soundSwoosh = new Media("assets/sounds/sfx_swooshing.mp3", mediaSuccess, mediaError);
         }
-   
-   		//start with the splash screen
+        
+        //start with the splash screen
    		showSplash();
     }
 };
 
+function mediaSuccess() {
+    console.log("Got Media");
+}
+
 function mediaError(err) {
-     console.log("Error getting media" + err);
+    console.log("Error getting media: " + err);
 }
 
 function getCookie(cname)

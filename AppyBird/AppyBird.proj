@@ -20,6 +20,7 @@
     <WP8TileTitle>Appy Bird</WP8TileTitle>
     <WP8ProductID>{0d35ff88-3acf-4b59-bdcb-caf2ce835f41}</WP8ProductID>
     <WP8PublisherID>{651a3b23-7cd3-48b7-b15c-a070bb7b221d}</WP8PublisherID>
+    <WP8Publisher>Brandon Satrom</WP8Publisher>
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\Telerik\ICE\Tools\Mobile\MobileTools.targets" />
 </Project>
